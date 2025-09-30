@@ -1,8 +1,11 @@
+// lib/constants.ts
 export const NAV = [
-  { href: "/", label: "หน้าแรก" },
-  { href: "/about", label: "เกี่ยวกับเรา" },
-  { href: "https://lt.longtrade-academy.com/", label: "คอร์สเรียน", external: true},
-  { href: "https://longtrade-catalog.vercel.app/", label: "สินค้าและบริการ", external: true },
-  { href: "/articles", label: "บทความ" },
-  { href: "/promotions", label: "โปรโมชั่น" },
+  { label: "หน้าแรก", href: "/" },
+  { label: "เกี่ยวกับเรา", href: "/about" },
+  { label: "คอร์สเรียน", href: "/courses" },
+  { label: "สินค้าและบริการ", href: "https://longtrade-catalog.vercel.app/", external: true },
+  { label: "บทความ", href: "/articles" },
+
+  // เปลี่ยนตรงนี้
+  { label: "โปรโมชั่น", href: "https://longtrade-catalog.vercel.app/promo", external: true },
 ];
