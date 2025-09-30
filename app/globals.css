@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg-img:url('/red_glass.png');
+}
+
+html,body, #__next { height: 100%; }
+body{
+  @apply bg-brand-black text-brand-white antialiased;
+  background-image: var(--bg-img), theme('backgroundImage.red-glass');
+  background-attachment: fixed;
+  background-size: cover, cover;
+  background-position: center, center;
+}
+
+.container-std{ @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+/* ===== Liquid Glass Card ===== */
+.liquid {
+  @apply relative rounded-2xl border border-white/10 text-brand-white overflow-hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 10px 40px rgba(214,31,42,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* ขอบไหล ๆ แบบ gradient เฉพาะเส้นขอบ */
+.liquid::before{
+  content:"";
+  position:absolute; inset:-1px;
+  padding:1px; border-radius:1rem;
+  background: conic-gradient(from 180deg,
+    rgba(214,31,42,.8),
+    rgba(255,255,255,.2),
+    rgba(214,31,42,.45),
+    rgba(255,255,255,.2),
+    rgba(214,31,42,.8)
+  );
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: none;
+}
+
+/* แสงกวาดผิวแก้ว */
+.liquid::after{
+  content:"";
+  position:absolute; inset:-20%;
+  background: radial-gradient(40% 30% at 20% 10%, rgba(255,255,255,.18), transparent 60%),
+              radial-gradient(35% 25% at 80% 90%, rgba(214,31,42,.18), transparent 60%);
+  filter: blur(18px);
+  animation: liquid-float 9s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+/* ฟอง/หยดแบบ liquid (ใส่ใน .liquid-inner เพื่อไม่ชนเนื้อหา) */
+.liquid .blob{
+  position:absolute; border-radius:999px; filter: blur(16px);
+  background: radial-gradient(circle at 30% 30%, rgba(214,31,42,.6), rgba(214,31,42,.15) 60%, transparent 70%);
+  mix-blend-mode: screen; opacity:.75;
+  animation: blob 10s ease-in-out infinite;
+}
+
+@keyframes liquid-rotate { to { transform: rotate(360deg); } }
+@keyframes liquid-float {
+  0% { transform: translate3d(0,0,0) }
+  100%{ transform: translate3d(2%, -2%, 0) }
+}
+@keyframes blob {
+  0%,100% { transform: translate(0,0) scale(1) }
+  50% { transform: translate(10%, -6%) scale(1.08) }
+}
+
+.glass{
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glow;
+}
+
+.btn{
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition;
+}
+.btn-primary{ @apply bg-brand-red text-white hover:bg-red-600; }
+.btn-secondary{ @apply border border-brand-red/40 text-brand-white hover:bg-white/10; }
+
+.h1{ @apply text-4xl md:text-6xl font-extrabold tracking-tight; }
+.h2{ @apply text-2xl md:text-4xl font-bold; }
+.p{ @apply text-base md:text-lg text-white/80; }
+
+/* Placeholder image styles */
+.placeholder{
+  @apply flex items-center justify-center text-white/70 text-sm;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px dashed rgba(255,255,255,0.25);
+}
